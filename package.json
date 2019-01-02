@@ -1,7 +1,15 @@
 {
   "name": "react-tic-tac-toe",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "description": "Tic Tac Toe game on React JS",
+  "keywords": ["react", "game", "demo", "sample", "tic tac toe"],
+  "author": "Anton Karpenko <i@karpolan.com> (https://karpolan.com)",
+  "license": "MIT",
+  "homepage": "https://karpolan.com/demos/react-tic-tac-toe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karpolan/react-tic-tac-toe"
+  },
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

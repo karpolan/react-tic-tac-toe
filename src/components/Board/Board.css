@@ -1,0 +1,100 @@
+.Board {
+  display: block;
+  line-height: 0;
+  text-align: center;
+  margin: auto;
+  min-width: 240px;
+  width: 100%;
+  border: 1px #222 solid;
+  border: none;
+  background-color: #444;
+}
+
+.Cell {
+  display: inline-block;
+  padding: 0;
+  margin: 1%;
+  width: 30%;
+  padding-bottom: 30%;
+  border: 1px #222 solid;
+  border-radius: 15%;
+}
+
+/*==============================================================================
+Modifyers and run-time paramenters
+================================================================================
+The look of every cell depends on a value of associated cells[] and states.
+The board controls are active only if there is a game with human player.
+Follownig CSS calss modifyers are using depending on game and control states.
+gameState:	0	= .gameNo
+			1	= .gamePvp			
+			2	= .gamePvc
+			101	= .gameDemo			
+winner	:	0	= .winnerNo
+			1	= .winnerX
+			-1	= .winnerO
+turn	: 	0	= .turnNo	
+			1 	= .turnX 
+			-1 	= .turnO
+cells[] : 	0	= .cellNo
+			1 	= .cellX
+			-1 	= .cellO
+			any	= .cellWin - highligt when game is over and there is a winner
+*/
+
+/* 
+These modifiers should be applyed to the container, not to a cell. 
+*/
+.gameNo {
+}
+.gamePvp {
+}
+.gamePvc {
+}
+.gameDemo {
+}
+
+.winnerNo {
+}
+.winnerX {
+}
+.winnerO {
+}
+
+.turnNo {
+}
+.turnX {
+}
+.turnO {
+}
+
+/* 
+These modifiers should be applyed to cells and other controls 
+*/
+.cellNo {
+  background-color: #888;
+}
+
+.cellX {
+  background-color: #008;
+}
+
+.cellO {
+  background-color: #800;
+}
+
+.cellWin {
+  background-color: #0f0;
+}
+
+/*
+Highlights for empty cell when some player can make a turn
+*/
+.turnX .cellNo:hover {
+  background-color: #00f;
+  cursor: crosshair;
+}
+.turnO .cellNo:hover {
+  background-color: #f00;
+  cursor: crosshair;
+}

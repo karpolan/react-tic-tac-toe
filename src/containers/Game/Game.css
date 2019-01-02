@@ -1,0 +1,10 @@
+.Game {
+	margin: auto;
+	padding: 10px;
+	border: 1px #f0f dotted;
+}
+
+.Indicator {
+	color: #f0f;
+}
+
