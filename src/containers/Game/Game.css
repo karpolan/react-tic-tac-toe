@@ -1,12 +1,9 @@
 .Game {
 	margin: auto;
+	padding: 1vmin;
 	max-width: 600px;
 	min-width: 240px;
 	max-height: 600px;
 	min-height: 240px;
-}
-
-.Indicator {
-	color: #f0f;
 }
 
