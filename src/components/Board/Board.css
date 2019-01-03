@@ -1,22 +1,19 @@
 .Board {
   display: block;
-  line-height: 0;
   text-align: center;
   margin: auto;
-  min-width: 240px;
+  padding: 0.5% 0;
   width: 100%;
-  border: 1px #222 solid;
-  border: none;
   background-color: #444;
 }
 
 .Cell {
+  /* 1:1 Aspect Ratio, 1%+31+1% x 1%+31+1% multiline flow. Note: don't use wide borders! */
   display: inline-block;
-  padding: 0;
+  width: 31%;
+  padding-top: 31%;
   margin: 1%;
-  width: 30%;
-  padding-bottom: 30%;
-  border: 1px #222 solid;
+  /* Other styling */
   border-radius: 15%;
 }
 
@@ -76,11 +73,19 @@ These modifiers should be applyed to cells and other controls
 }
 
 .cellX {
-  background-color: #008;
+  background-color: #888;
+  background-image: url("./x.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .cellO {
-  background-color: #800;
+  background-color: #888;
+  background-image: url("./o.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .cellWin {

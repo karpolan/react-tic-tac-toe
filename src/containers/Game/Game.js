@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Game.css";
 import * as game from "../../game/index";
-import Board from "../../components/Game/Board/Board";
+import Board from "../../components/Board/Board";
 
 class Game extends Component {
   constructor(props) {

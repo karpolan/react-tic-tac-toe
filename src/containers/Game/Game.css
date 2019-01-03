@@ -1,7 +1,9 @@
 .Game {
 	margin: auto;
-	padding: 10px;
-	border: 1px #f0f dotted;
+	max-width: 600px;
+	min-width: 240px;
+	max-height: 600px;
+	min-height: 240px;
 }
 
 .Indicator {

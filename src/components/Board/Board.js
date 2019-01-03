@@ -33,11 +33,15 @@ const board = props => {
     return result;
   };
 
-  let classBoard = "Board" +
-    " " + classByGameState[gameState] +
-    " " + classByWinner[winner + 1] + // +1 because [-1, 0, +1];
-		" " + classByTurn[turn + 1]; // +1 because [-1, 0, +1];
-		
+  let classBoard =
+    "Board" +
+    " " +
+    classByGameState[gameState] +
+    " " +
+    classByWinner[winner + 1] + // +1 because [-1, 0, +1];
+    " " +
+    classByTurn[turn + 1]; // +1 because [-1, 0, +1];
+
   return <div className={classBoard}>{cells.map(renderCell)}</div>;
 };
 
