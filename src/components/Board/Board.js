@@ -19,8 +19,8 @@ const board = props => {
       // The game is over and there is a winner, apply winCells styling
       if (winCells.includes(index)) classCell += " " + classByWinCells[1];
     }
-    if (inputEnabled) {
-      // Add events to the cell only if the input enabled
+    if (inputEnabled && value === 0) {
+      // Add events to the cell only if the input enabled and cell is empty
       result = (
         <div
           key={index}

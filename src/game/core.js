@@ -68,12 +68,10 @@ let _winCells = [];
 /*==============================================================================
 Getters and Setters. 
 ==============================================================================*/
-
-// Getter for the game state. 
+// Game State 
 const _getGameState = () => {
 	return _gameState;
 }
-// Setter for the current turn. 
 const _setGameState  = (value) => {
 	const allowedValues = [0, 1, 2, 3]
 	if (!allowedValues.includes(value)) {
@@ -85,11 +83,10 @@ const _setGameState  = (value) => {
 }
 
 //------------------------------------------------------------------------------
-// Getter for the winner. 
+// The Winner 
 const _getWinner = () => {
 	return _winner;
 }
-// Setter for the winner. 
 const _setWinner = (value) => {
 	if (Math.abs(value) > 1) {
 		console.error('setWinner() - Invalid value parameter: ', value);
@@ -100,11 +97,10 @@ const _setWinner = (value) => {
 }
 
 //------------------------------------------------------------------------------
-// Getter for the current turn. 
+// Current turn. 
 const _getTurn = () => {
 	return _turn;
 }
-// Setter for the current turn. 
 const _setTurn = (value) => {
 	if (Math.abs(value) > 1) {
 		console.error('setTurn() - Invalid value parameter: ', value);
@@ -115,17 +111,16 @@ const _setTurn = (value) => {
 }
 
 //------------------------------------------------------------------------------
-// Getter for 2nd player intellect. 
+// 2nd player intellect. 
 const _getIntellect = () => {
 	return _intellect;
 }
 
 //------------------------------------------------------------------------------
-// Getter for array of all game board cells 
+// Game board cell(s)  
 const _getCells = () => {
 	return _cells;
 }
-// Getter for a single cell of the game board. 
 const _getCell = (index) => {
 	if (index < 0 || index >= _cells.length) {
 		console.error('getCell() - Invalid index parameter: ', index);
@@ -133,7 +128,6 @@ const _getCell = (index) => {
 	}
 	return getCells()[index];
 }
-// Setter for a single cell of the game board.
 const _setCell = (index, value = 0) => {
 	if (index < 0 || index >= _cells.length) {
 		console.error('setCell() - Invalid index parameter: ', index);
@@ -150,17 +144,16 @@ const _setCell = (index, value = 0) => {
 }
 
 //------------------------------------------------------------------------------
-// Getter for array of line summaries 
+// Line summaries 
 const _getSums = () => {
 	return _sums;
 }
 
 //------------------------------------------------------------------------------
-// Getter for array of "winning" cells
+// "Winning" cells
 const _getWinCells = () => {
 	return _winCells;
 }
-// Setter for array of "winning" cells
 const _setWinCells = (value) => {
 	if (!Array.isArray(value)) {
 		console.error('setWinCells() - Invalid value parameter: ', value);
@@ -170,7 +163,7 @@ const _setWinCells = (value) => {
 }
 
 /*==============================================================================
-Override these function to use own storage.
+Override exported functions to use own storage.
 ==============================================================================*/
 
 export const getGameState = _getGameState;

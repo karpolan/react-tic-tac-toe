@@ -19,5 +19,5 @@ export const mapCellsToSum = [
 	[1, 4, 7],	// Vertical 2
 	[2, 5, 8],	// Vertical 3
 	[0, 4, 8],	// Diagonal from left up to right down
-	[6, 4, 2]	// Diagonal from left down to right up
+	[6, 4, 2]		// Diagonal from left down to right up
 ];

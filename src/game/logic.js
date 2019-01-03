@@ -1,4 +1,3 @@
-//import * as game from './index';
 import * as consts from './consts';
 import * as core from './core';
 
@@ -50,7 +49,7 @@ The gaming process
 // Starts a new game, also reset all params to defaults 
 export const gameStart = (newGameState = 1, newTurn = 1) => {
 	// Fill cells with zeros 
-	consts.cellsDefault.map((index)=> core.setCell(index, 0));
+	consts.cellsDefault.map((index) => core.setCell(index, 0));
 
 	sumsUpdate(); 			// Recalculate summaries (actually fill with zeros) 
 	core.setWinCells([]);	// Delete any "winning" cells
