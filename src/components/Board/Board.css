@@ -46,7 +46,7 @@ These modifiers should be applyed to the container, not to a cell.
 }
 .gamePvp {
 }
-.gamePvc {
+.gamePve {
 }
 .gameDemo {
 }
@@ -99,7 +99,7 @@ Highlights for empty cell when some player can make a turn
   background-color: #00f;
   cursor: crosshair;
 }
-.turnO .cellNo:hover {
+.gamePvp .turnO .cellNo:hover {
   background-color: #f00;
   cursor: crosshair;
 }

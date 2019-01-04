@@ -1,9 +1,14 @@
+/*******************************************************************************
+"Tic Tac Toe" Game on JavaScript - Game Logic
+
+Copyright (c) KARPOLAN <i@karpolan.com> (https://karpolan.com)
+*******************************************************************************/
 import * as consts from './consts';
 import * as core from './core';
 
-/*=============================================================================
+/*==============================================================================
 Tools and utilities
-=============================================================================*/
+==============================================================================*/
 
 //------------------------------------------------------------------------------
 // Calculates sum of cells by its' indexes. Used to verify "winning" cells and 
@@ -41,29 +46,44 @@ const winnerExist = () => {
 	return (highSums.length > 0)
 }
 
+
 /*=============================================================================
-The gaming process
+The Gaming process
 =============================================================================*/
 
 //------------------------------------------------------------------------------
 // Starts a new game, also reset all params to defaults 
-export const gameStart = (newGameState = 1, newTurn = 1) => {
+export const gameStart = (newGameState = 1, newTurn = 1, newIntelect = consts.GAME_INTELECT_DEFAULT) => {
 	// Fill cells with zeros 
 	consts.cellsDefault.map((index) => core.setCell(index, 0));
 
-	sumsUpdate(); 			// Recalculate summaries (actually fill with zeros) 
-	core.setWinCells([]);	// Delete any "winning" cells
-	core.setTurn(newTurn); 	// Who will make a turn first, "x" turn by default 
+	sumsUpdate();										// Recalculate summaries (actually fill with zeros) 
+	core.setWinCells([]);						// Delete any "winning" cells
+	core.setTurn(newTurn); 	       	// Who will make a turn first, "x" turn by default 
+	core.setIntellect(newIntelect);	// Update AI level if needed
 
-	// Allow to paly the game or start the demo mode
-	core.setGameState(newGameState); 	
-	console.log('gameStart() successful. gameState: %s turn: %s', 
-		core.getGameState(), core.getTurn());
+	core.setGameState(newGameState);
+
+	// Perform AI turn after some delay for Demo and PvE mode for player O (-1) 
+	if ((core.getGameState() === 3) || (core.getGameState() === 2 && core.getTurn() === -1)) {
+		setTimeout(() => {
+			turnByIntelect();
+		}, consts.GAME_DELAY_AUTO_TURNS);
+	}	 	
+
+	console.log('gameStart(%s, %s, %s) - gameState: %s, intelect: %s', newGameState, newTurn, newIntelect, core.getGameState(), core.getIntellect());
+}
+
+//------------------------------------------------------------------------------
+// Custom callback to be called at the end of the Game
+let _gameStopCallback = null;
+export const setOnGameStopCallback = (value) => {
+	_gameStopCallback = value;
 }
 
 //------------------------------------------------------------------------------
 // Stops any gaming activity. Called when there is no turn, some player wins, 
-// or critical error occurs 
+// or the critical error occurs 
 export const gameStop = () => {
 	core.setGameState(0); 	// stop any gaming activity
 	core.setTurn(0);		// no future turns
@@ -89,15 +109,34 @@ export const gameStop = () => {
 		core.setWinner(0);
 	}
 
-	console.log('gameStop() successful. winner: %s, winCells: %o', 
-		core.getWinner(), core.getWinCells());	
+	// Call custom callback if set
+	if (_gameStopCallback && (typeof _gameStopCallback === "function")) {
+		_gameStopCallback();
+	}
+
+	console.log('gameStop() - gameState: %s, winner: %s, winCells: %o', core.getGameState(), core.getWinner(), core.getWinCells());	
 } // gameStop
+
+//------------------------------------------------------------------------------
+// Custom callback to be called at the end of every successful turn
+let _turnCompleteCallback = null;
+export const setOnTurnCallback = (value) => {
+	_turnCompleteCallback = value;
+}
 
 //------------------------------------------------------------------------------
 // Event is called at the end of every successful turn
 export const onTurnComplete = (theTurn = 0) => {
 	// Recalculate line summfries
 	sumsUpdate();
+
+	// Set the turn marker to opposite value
+	core.setTurn(core.getTurn() * -1)
+
+	// Call custom callback if set
+	if (_turnCompleteCallback && (typeof _turnCompleteCallback === "function")) {
+		_turnCompleteCallback();
+	}
 
 	if (winnerExist()) {
 		// Stop the game, somebody wins
@@ -112,9 +151,18 @@ export const onTurnComplete = (theTurn = 0) => {
 		return; 
 	}
 
-	// Set the turn marker to opposite value and continue the game
-	core.setTurn(core.getTurn() * -1)
-}
+	// Perform AI turn after some delay for Demo and PvE mode for player O (-1) 
+	if ((core.getGameState() === 3) || (core.getGameState() === 2 && core.getTurn() === -1)) {
+		setTimeout(() => {
+			turnByIntelect();
+		}, consts.GAME_DELAY_AUTO_TURNS);
+	}	 	
+} // onTurnComplete
+
+
+/*=============================================================================
+The AI turns
+=============================================================================*/
 
 //------------------------------------------------------------------------------
 // Takes some empty cell by random
@@ -133,11 +181,11 @@ const turnRandom = (theTurn = 0) => {
 	}
 
 	// Get index of some random empty cell, from 0 to emptyCells.length-1
-	let randomIndex = Math.random() * emptyCells.length;
+	let randomIndex = Math.trunc(Math.random() * emptyCells.length);	
 
 	// Make a rundom turn
 	if (theTurn === 0) theTurn = core.getTurn(); // Use global value if not set
-	console.log("turnRandom() at %s cell", emptyCells[randomIndex]);
+	console.log("turnRandom(%s) - at %s cell", theTurn, emptyCells[randomIndex]);
 	return core.setCell(emptyCells[randomIndex], theTurn);
 }
 
@@ -148,7 +196,7 @@ const turnCenter = (theTurn = 0) => {
 
 	// Make a center turn
 	if (theTurn === 0) theTurn = core.getTurn(); // Use global value if not set	
-	console.log("turnCenter() at %s cell", consts.cellsCenter);
+	console.log("turnCenter(%s) - at %s cell", theTurn, consts.cellsCenter);
 	return core.setCell(consts.cellsCenter, theTurn);
 }
 
@@ -164,15 +212,15 @@ const turnCorner = (theTurn = 0) => {
 	// Variant 2
 	emptyCells = consts.cellsCorners
 		.filter((value) => core.getCell(value) === 0);
-	console.log("turnCenter() - emptyCells: ", emptyCells);
+//	console.log("turnCorner() - emptyCells: ", emptyCells);
 	if (emptyCells.length < 1) return false;	// There is no empty corners
 	
 	// Get index of some random corner cell, from 0 to emptyCells.length-1
-	let randomIndex = Math.random() * emptyCells.length;	
+	let randomIndex = Math.trunc(Math.random() * emptyCells.length);	
 
 	// Make a corner turn
 	if (theTurn === 0) theTurn = core.getTurn(); // Use global value if not set	
-	console.log("turnCorner() at %s cell", emptyCells[randomIndex]);
+	console.log("turnCorner(%s) - at %s cell", theTurn, emptyCells[randomIndex]);
 	return core.setCell(emptyCells[randomIndex], theTurn);
 }
 
@@ -190,12 +238,12 @@ const turnBlock = (theTurn = 0) => {
 			for (let j = 0; j < lineCellIndexes.length; j++) {
 				if (core.getCell(lineCellIndexes[j]) === 0) {
 					// We found an empty cell on the specific line
-					console.log("turnBlock() at %s for %o line", lineCellIndexes[j], lineCellIndexes);
+					console.log("turnBlock(%s) - at %s for %o line", theTurn, lineCellIndexes[j], lineCellIndexes);
 					return core.setCell(lineCellIndexes[j], theTurn);
 				}
 			}	
 			// Something wrong with this line :(
-			console.warn("turnBlock() - cannot make a defense turn on a blocking line %o", lineCellIndexes);
+			console.warn("turnBlock(%s) - cannot make a defense turn on a blocking line %o", theTurn, lineCellIndexes);
 		}
 	return false; // There is no blocking turn
 } // turnBlock
@@ -214,22 +262,23 @@ const turnWin = (theTurn = 0) => {
 			for (let j = 0; j < lineCellIndexes.length; j++) {
 				if (core.getCell(lineCellIndexes[j]) === 0) {
 					// We found an empty cell on the specific line
-					console.log("turnWin() at %s for %o line", lineCellIndexes[j], lineCellIndexes);
+					console.log("turnWin(%s) - at %s for %o line", theTurn, lineCellIndexes[j], lineCellIndexes);
 					return core.setCell(lineCellIndexes[j], theTurn);
 				}
 			}	
 			// Something wrong with this line :(
-			console.warn("turnWin() - cannot make a winning turn on a line %o", lineCellIndexes);
+			console.warn("turnWin(%s) - cannot make a winning turn on a line %o", theTurn, lineCellIndexes);
 		}
 	return false; // There is no winning turn
 } // turnWin
 
 //------------------------------------------------------------------------------
-// Performs computer turn depending on current level of the intelect	
-export const turnByIntelect = (theTurn = 0) => {
-	if (theTurn === 0) theTurn = core.getTurn(); // Use global value if not set	
+// Performs computer turn depending on current level of the AI intelect	
+export const turnByIntelect = (theTurn = 0, theIntelect = 0) => {
+	if (theTurn === 0) theTurn = core.getTurn(); 								// Use global value if not set	
+	if (theIntelect === 0) theIntelect = core.getIntellect(); 	// Use global value if not set	
 	let result = false;	
-	switch (core.getIntellect()) {
+	switch (theIntelect) {
 		case 5:		// Win -> Block -> Center -> Corner -> Random turns
 			result = 
 				turnWin(theTurn) || 

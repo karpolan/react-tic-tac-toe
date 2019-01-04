@@ -1,11 +1,8 @@
-/*
-export {
-	cellsDefault, cellsCenter, cellsCorners,
-	sumsDefault,
-	mapCellsToSum
-} from './consts';
-*/
+/*******************************************************************************
+"Tic Tac Toe" Game on JavaScript - Export of Game routines
 
+Copyright (c) KARPOLAN <i@karpolan.com> (https://karpolan.com)
+*******************************************************************************/
 export {
 	getGameState, setGameState,
 	getTurn, setTurn,
@@ -14,11 +11,13 @@ export {
 	getCells, getCell, setCell,
 	getSums,
 	getWinCells, setWinCells,
-} from './core'; 		// Getter and Setter for variables as a store
+} from './core'; 		
 
 export {
 	gameStart,
+	setOnGameStopCallback,
 	gameStop,
+	setOnTurnCallback,
 	onTurnComplete,
 	turnByIntelect,
 } from './logic';

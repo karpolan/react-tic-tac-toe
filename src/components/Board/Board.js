@@ -1,26 +1,27 @@
 import React from "react";
 import "./Board.css";
 
-export const classByGameState = ["gameNo", "gamePvp", "gamePvc", "gameDemo"];
-export const classByWinner = ["winnerO", "winnerNo", "winnerX"];
-export const classByTurn = ["turnO", "turnNo", "turnX"];
-export const classByCells = ["cellO", "cellNo", "cellX"];
-export const classByWinCells = ["", "cellWin"];
+const classByTurn = ["turnO", "turnNo", "turnX"];
+const classByCells = ["cellO", "cellNo", "cellX"];
+const classByWinCells = ["", "cellWin"];
 
+/*
+Renders board of Tic Tac Toe game (3x3 cells). 
+CSS classes for every Cell are set according to the content and different game states.
+"onCellClick" events added to empty cells only when "clickDisabled" is false.
+*/
 const board = props => {
-  const { gameState, winner, turn, cells, winCells, onCellClick } = props;
-  const inputEnabled = gameState === 1 || gameState === 2;
-  const winnerExist = gameState === 0 && winner !== 0;
+  const { turn, cells, clicksEnabled, onCellClick, winVisible, winCells } = props;
 
-  const renderCell = (value, index, all) => {
+  const renderCell = (value, index) => {
     let result = null;
-    let classCell = "Cell " + classByCells[value + 1]; // +1 because [-1, 0, +1];
-    if (winnerExist) {
-      // The game is over and there is a winner, apply winCells styling
+    let classCell = "Cell " + classByCells[value + 1]; // + 1 because [-1, 0, +1];
+    if (winVisible) {
+      // Apply winCells styling if the game is over and there is a winner
       if (winCells.includes(index)) classCell += " " + classByWinCells[1];
     }
-    if (inputEnabled && value === 0) {
-      // Add events to the cell only if the input enabled and cell is empty
+    if (clicksEnabled && value === 0) {
+      // Add click event to cells only if the cell is empty and clicksEnabled is true
       result = (
         <div
           key={index}
@@ -33,14 +34,7 @@ const board = props => {
     return result;
   };
 
-  let classBoard =
-    "Board" +
-    " " +
-    classByGameState[gameState] +
-    " " +
-    classByWinner[winner + 1] + // +1 because [-1, 0, +1];
-    " " +
-    classByTurn[turn + 1]; // +1 because [-1, 0, +1];
+  let classBoard = "Board " + classByTurn[turn + 1]; // + 1 because [-1, 0, +1];
 
   return <div className={classBoard}>{cells.map(renderCell)}</div>;
 };

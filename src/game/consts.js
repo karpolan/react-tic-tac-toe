@@ -1,10 +1,20 @@
+/*******************************************************************************
+"Tic Tac Toe" Game on JavaScript - Conts and Helpers
+
+Copyright (c) KARPOLAN <i@karpolan.com> (https://karpolan.com)
+*******************************************************************************/
+export const GAME_INTELECT_DEFAULT = 5; 	// Dfault AI intelect level: 1..5 
+export const GAME_DELAY_AUTO_TURNS = 500; // Delay before/between automatic turns by AI, in milli-seconds.
+
 export const cellsDefault = [
 	0, 0, 0,
 	0, 0, 0,
 	0, 0, 0
 ];
+
 export const cellsCenter = 4;
 export const cellsCorners = [0, 2, 6, 8];
+
 export const sumsDefault = [
 	0, 0, 0,
 	0, 0, 0,

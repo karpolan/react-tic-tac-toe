@@ -1,3 +1,8 @@
+/*******************************************************************************
+"Tic Tac Toe" Game on JavaScript - Game Core
+
+Copyright (c) KARPOLAN <i@karpolan.com> (https://karpolan.com)
+*******************************************************************************/
 import * as consts from './consts';
 
 /*==============================================================================
@@ -6,9 +11,9 @@ Consts and variables
 /*
 State of the gaming process. Possible values: 
 	0	: game is stoped/over
-	1	: player VS player game is running
-	2	: player VS compiter game is running
-	3	: game is running in demo mode
+	1	: player VS player (PvP) game is running
+	2	: player VS environment (PvE) game is running
+	3	: game is running in Demo mode
 */
 let _gameState = 0;
 
@@ -33,7 +38,7 @@ Switch for second (a computer) player's intelect level
 	0		: manual play 
 	1..5	: easy to hard AI
 */
-let _intellect = 5; 
+let _intellect = consts.GAME_INTELECT_DEFAULT; 
 
 /*
 Cells array for the game board has following structure:
@@ -115,6 +120,14 @@ const _setTurn = (value) => {
 const _getIntellect = () => {
 	return _intellect;
 }
+const _setIntellect = (value) => {
+	if (!Number.isInteger(value) || value < 0) {
+		console.error('setIntellect() - Invalid value parameter: ', value);
+		return false;
+	}
+	_intellect = value;
+	return true;
+}
 
 //------------------------------------------------------------------------------
 // Game board cell(s)  
@@ -176,6 +189,7 @@ export const getWinner = _getWinner;
 export const setWinner = _setWinner;
 
 export const getIntellect = _getIntellect;
+export const setIntellect = _setIntellect;
 
 export const getCells = _getCells;
 export const getCell  = _getCell;
