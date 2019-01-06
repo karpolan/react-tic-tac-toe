@@ -35,7 +35,7 @@ let _turn = 0;
 
 /*
 Switch for second (a computer) player's intelect level
-	0		: manual play 
+	0	: manual play 
 	1..5	: easy to hard AI
 */
 let _intellect = consts.GAME_INTELECT_DEFAULT; 
