@@ -57,8 +57,8 @@ export const gameStart = (newGameState = 1, newTurn = 1, newIntelect = consts.GA
 	// Fill cells with zeros 
 	consts.cellsDefault.map((index) => core.setCell(index, 0));
 
-	sumsUpdate();										// Recalculate summaries (actually fill with zeros) 
-	core.setWinCells([]);						// Delete any "winning" cells
+	sumsUpdate();			// Recalculate summaries (actually fill with zeros) 
+	core.setWinCells([]);		// Delete any "winning" cells
 	core.setTurn(newTurn); 	       	// Who will make a turn first, "x" turn by default 
 	core.setIntellect(newIntelect);	// Update AI level if needed
 
@@ -86,7 +86,7 @@ export const setOnGameStopCallback = (value) => {
 // or the critical error occurs 
 export const gameStop = () => {
 	core.setGameState(0); 	// stop any gaming activity
-	core.setTurn(0);		// no future turns
+	core.setTurn(0);	// no future turns
 
 	// Verify if there a winner and the winning combination
 	// Todo: Add a surrender case here
