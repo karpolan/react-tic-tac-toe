@@ -1,5 +1,5 @@
 /*******************************************************************************
-"Tic Tac Toe" Game on JavaScript - Conts and Helpers
+"Tic Tac Toe" Game on JavaScript - Consts and Helpers
 
 Copyright (c) KARPOLAN <i@karpolan.com> (https://karpolan.com)
 *******************************************************************************/
