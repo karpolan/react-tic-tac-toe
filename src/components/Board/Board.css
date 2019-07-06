@@ -17,30 +17,29 @@
   border-radius: 15%;
 }
 
-/*==============================================================================
-Modifyers and run-time paramenters
-================================================================================
+/* -----------------------------------------------------------------------------
+  Modifyers and run-time paramenters
+--------------------------------------------------------------------------------
 The look of every cell depends on a value of associated cells[] and states.
 The board controls are active only if there is a game with human player.
 Follownig CSS calss modifyers are using depending on game and control states.
 gameState:	0	= .gameNo
-			1	= .gamePvp			
+			1	= .gamePvp
 			2	= .gamePvc
-			101	= .gameDemo			
+			101	= .gameDemo
 winner	:	0	= .winnerNo
 			1	= .winnerX
 			-1	= .winnerO
-turn	: 	0	= .turnNo	
-			1 	= .turnX 
+turn	: 	0	= .turnNo
+			1 	= .turnX
 			-1 	= .turnO
 cells[] : 	0	= .cellNo
 			1 	= .cellX
 			-1 	= .cellO
 			any	= .cellWin - highligt when game is over and there is a winner
 */
-
-/* 
-These modifiers should be applyed to the container, not to a cell. 
+/*
+These modifiers should be applyed to the container, not to a cell.
 */
 .gameNo {
 }
@@ -65,8 +64,8 @@ These modifiers should be applyed to the container, not to a cell.
 .turnO {
 }
 
-/* 
-These modifiers should be applyed to cells and other controls 
+/*
+These modifiers should be applyed to cells and other controls
 */
 .cellNo {
   background-color: #888;
@@ -74,7 +73,7 @@ These modifiers should be applyed to cells and other controls
 
 .cellX {
   background-color: #888;
-  background-image: url("./x.png");
+  background-image: url('./x.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -82,7 +81,7 @@ These modifiers should be applyed to cells and other controls
 
 .cellO {
   background-color: #888;
-  background-image: url("./o.png");
+  background-image: url('./o.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

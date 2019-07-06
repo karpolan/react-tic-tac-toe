@@ -1,8 +1,14 @@
 {
   "name": "react-tic-tac-toe",
-  "version": "0.3.5",
+  "version": "0.4.7",
   "description": "Tic Tac Toe game on React JS",
-  "keywords": ["react", "game", "demo", "sample", "tic tac toe"],
+  "keywords": [
+    "react",
+    "game",
+    "demo",
+    "sample",
+    "tic tac toe"
+  ],
   "author": "Anton Karpenko <i@karpolan.com> (https://karpolan.com)",
   "license": "MIT",
   "homepage": "https://karpolan.com/demos/react-tic-tac-toe",
@@ -11,15 +17,14 @@
     "url": "https://github.com/karpolan/react-tic-tac-toe"
   },
   "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"

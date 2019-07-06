@@ -1,13 +1,13 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 5vmin;
 }
 
-.App-header {
+.app-header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,11 +16,11 @@
   color: #222;
 }
 
-.App-header h1 {
+.app-header h1 {
   font-size: 4vh;
 }
 
-.App-link {
+.app-link {
   color: #61dafb;
 }
 
@@ -33,8 +33,7 @@
   }
 }
 
-
-footer {
+.app-footer {
   display: block;
   background-color: #fff;
   padding: 1vmin;
@@ -43,11 +42,11 @@ footer {
   font-size: 2vmin;
 }
 
-footer a {
+.app-footer a {
   color: #222;
   text-decoration: none;
-}  
+}
 
-footer a:hover {
+.app-footer a:hover {
   text-decoration: underline;
-}  
+}
