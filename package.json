@@ -17,8 +17,8 @@
     "url": "https://github.com/karpolan/react-tic-tac-toe"
   },
   "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "^2.1.2"
   },
   "scripts": {
