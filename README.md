@@ -3,11 +3,6 @@ This is "playground" with React JS. Tic Tac Toe game is nice sample to dig into 
 
 [On-line Demo](https://karpolan.com/demos/react-tic-tac-toe/)
 
-## Task
-The goal of this test is to implement a sample project in Php/Javascript, where you
-visualize a restaurant list. You are able to sort the restaurant list based on its current
-openings state, you can favourite a restaurant and you can select a sort value to further
-sort the list. And lastly, you are able to search for restaurants.
 
 # It is built using React
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
